@@ -286,7 +286,7 @@ def validate(model, epoch, total_iter, criterion, valset, batch_size,
     tik = time.perf_counter()
     with torch.no_grad():
         val_sampler = DistributedSampler(valset) if distributed_run else None
-        val_loader = DataLoader(valset, num_workers=4, shuffle=False,
+        val_loader = DataLoader(valset, num_workers=2, shuffle=False,
                                 sampler=val_sampler,
                                 batch_size=batch_size, pin_memory=False,
                                 collate_fn=collate_fn)
@@ -470,7 +470,7 @@ def main():
         train_sampler, shuffle = None, True
 
     # 4 workers are optimal on DGX-1 (from epoch 2 onwards)
-    train_loader = DataLoader(trainset, num_workers=4, shuffle=shuffle,
+    train_loader = DataLoader(trainset, num_workers=2, shuffle=shuffle,
                               sampler=train_sampler, batch_size=args.batch_size,
                               pin_memory=True, persistent_workers=True,
                               drop_last=True, collate_fn=collate_fn)
