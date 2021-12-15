@@ -19,7 +19,7 @@ export OMP_NUM_THREADS=1
 : ${EPOCHS:=10}
 : ${EPOCHS_PER_CHECKPOINT:=2}
 : ${WARMUP_STEPS:=100}
-: ${KL_LOSS_WARMUP:=10}
+: ${KL_LOSS_WARMUP:=100}
 
 # Train a mixed phoneme/grapheme model
 : ${PHONE:=true}
